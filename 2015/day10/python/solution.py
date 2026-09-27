@@ -3,12 +3,13 @@
 # Day: 10
 
 from pathlib import Path
+import time
 
 def read_input():
     return Path("input.txt").read_text().splitlines()
 
 def look_and_say(number):
-    new_number = ""
+    parts = []
     digit_counter = 0
     last_digit = None
     for digit in number:
@@ -18,12 +19,12 @@ def look_and_say(number):
         elif digit == last_digit:
             digit_counter += 1
         else:
-            new_number += str(digit_counter) + str(last_digit)
+            parts.append(str(digit_counter) + last_digit)
             digit_counter = 1
         last_digit = digit
 
-    new_number += str(digit_counter) + str(last_digit)
-    return new_number
+    parts.append(str(digit_counter) + last_digit)
+    return "".join(parts)
 
 def part1(data):
     number = data
@@ -42,7 +43,7 @@ def part2(data):
 def main():
     data = read_input()
     data = data[0].strip()
-
+    
     print("Part 1:", part1(data))
     print("Part 2:", part2(data))
 
