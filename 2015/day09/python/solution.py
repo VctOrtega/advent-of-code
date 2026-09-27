@@ -36,11 +36,8 @@ def route_distance(route, graph):
 
     return total
 
-def part1(data):
-    graph = create_graph(data)
-    locations = list(graph.keys())
+def part1(locations, graph):
     routes = permutations(locations)
-
     minimum_distance = None
     for route in routes:
         distance = route_distance(route, graph)
@@ -49,15 +46,23 @@ def part1(data):
 
     return minimum_distance
 
-def part2(data):
-    # Solve Part 2
-    pass
+def part2(locations, graph):
+    routes = permutations(locations)
+    maximum_distance = None
+    for route in routes:
+        distance = route_distance(route, graph)
+        if maximum_distance is None or distance > maximum_distance:
+            maximum_distance = distance
+
+    return maximum_distance
 
 def main():
     data = read_input()
+    graph = create_graph(data)
+    locations = list(graph.keys())
 
-    print("Part 1:", part1(data))
-    print("Part 2:", part2(data))
+    print("Part 1:", part1(locations, graph))
+    print("Part 2:", part2(locations, graph))
 
 if __name__ == "__main__":
     main()
