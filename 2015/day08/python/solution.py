@@ -5,7 +5,7 @@
 from pathlib import Path
 
 def read_input():
-    return Path("input.txt").read_text().splitlines()
+    return Path("./python/input.txt").read_text().splitlines()
 
 def part1(data):
     total_characters = 0
